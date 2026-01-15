@@ -5,7 +5,7 @@ $f_in = fopen('ListaCepsCarnaval.csv', 'r');
 $f_out = fopen('BairroPorCep.csv', 'w');
 
 fwrite($f_out, "\xEF\xBB\xBF");
-fputcsv($f_out, ['Bairro_API', 'CEP'], ";"); // Cabeçalho sem UF
+fputcsv($f_out, ['Bairro_API', 'CEP'], ";");
 
 $ch = curl_init();
 curl_setopt_array($ch, [
@@ -37,7 +37,7 @@ while ($linha = fgetcsv($f_in, 0, ";")) {
         }
     }
 
-    // Grava no CSV o que estiver no cache (seja o bairro ou o erro)
+    // Grava no CSV o que estiver no cache
     fputcsv($f_out, [$cache_ceps[$cep], $cep], ";");
 }
 
